@@ -1,0 +1,57 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Getting build number from TestFlight"
+  lane :buildNumber do
+    lastNum = latest_testflight_build_number + 1
+    filename = "../../pubspec.yaml"
+    outdata = File.read(filename).gsub(/version: \d+\.\d+\.\d+\+\d+/, "version: 1.0.0+#{lastNum}")
+    File.open(filename, 'w') do |out|
+      out << outdata
+    end
+  end
+
+  lane :beta do
+    build_app(workspace: "Runner.xcworkspace",
+      scheme: "dev",
+      configuration: "Release",
+      export_options: {
+      method: "app-store",
+      provisioningProfiles: {
+        "com.example.fluttertemplate" => "match AppStore com.example.fluttertemplate",
+      }
+    }
+  )
+    upload_to_testflight(skip_submission: true, skip_waiting_for_build_processing: true)
+  end
+
+  desc "Push a new beta build to TestFlight"
+  lane :release do
+    build_app(workspace: "Runner.xcworkspace",
+      scheme: "production",
+      configuration: "Release-production",
+      export_options: {
+      method: "app-store",
+      provisioningProfiles: {
+        "com.producttion.fluttertemplate" => "match AppStore com.producttion.fluttertemplate",
+      }
+    }
+  )
+    upload_to_testflight(skip_submission: true, skip_waiting_for_build_processing: true)
+  end
+end

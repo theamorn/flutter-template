@@ -1,0 +1,23 @@
+apple_id("dev_test@gmail.com") # Your Apple email address
+for_platform :ios do
+  for_lane :beta do
+    team_id 'AAA'
+    app_identifier("com.example.fluttertemplate") # The bundle identifier of your app
+    itc_team_id 'BBB'
+    apple_id("dev_test@gmail.com") # Your Apple email address
+  end
+
+  for_lane :buildNumber do
+    team_id 'AAA'
+    app_identifier("com.example.fluttertemplate") # The bundle identifier of your app
+    itc_team_id 'BBB'
+    apple_id("dev_test@gmail.com") # Your Apple email address
+  end
+
+  for_lane :release do
+    team_id 'CCC'
+    app_identifier("com.production.fluttertemplate") # The bundle identifier of your app
+    itc_team_id 'DDD'
+    apple_id("prod_test@gmail.com") # Your Apple email address
+  end
+end
