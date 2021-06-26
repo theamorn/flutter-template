@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  final String apiURL;
+
+  MyApp(this.apiURL);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,13 +22,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page', apiURL: apiURL,),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+class MyHomePage extends StatefulWidget { 
+  MyHomePage({Key? key, required this.title, required this.apiURL}) : super(key: key);
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -41,6 +40,7 @@ class MyHomePage extends StatefulWidget {
   // always marked "final".
 
   final String title;
+  final String apiURL;
 
   @override
   _MyHomePageState createState() => _MyHomePageState();
@@ -149,6 +149,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Text(
+              'URL : ${widget.apiURL}',
+            ),
             Text(
               'You have pushed the button this many times:',
             ),

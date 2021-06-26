@@ -37,5 +37,12 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
+       <meta-data
+           android:name="io.theamorn.value"
+           android:value="${replaceValueTest}" />
+       <meta-data
+           android:name="io.theamorn.data"
+           android:value="${replaceValueLive}" />
     </application>
 </manifest>

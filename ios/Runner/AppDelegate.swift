@@ -25,7 +25,7 @@ import LocalAuthentication
     private func returnValueSDK(result: FlutterResult, id: String) {
         // You can call any SDK in here if the result return immediately
         let sdk = ThirdPartySDK(delegate: self, id: id)
-        return result(sdk.process(id: id))
+        return result(sdk.process())
     }
     
     private func initFlutterChannel() {

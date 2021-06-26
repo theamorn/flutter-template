@@ -35,19 +35,51 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.example.fluttertemplate"
-        minSdkVersion 16
+        minSdkVersion 26
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
 
-    buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig signingConfigs.debug
+    flavorDimensions "version"
+    productFlavors {
+        dev {
+            flavorDimensions "version"
+            resValue "string", "app_name", "App DEV"
+            applicationId "com.example.fluttertemplate"
+            manifestPlaceholders = [replaceValueTest: true, replaceValueLive: "any string that you want to use"]
+        }
+
+        uat {
+            flavorDimensions "version"
+            resValue "string", "app_name", "App UAT"
+            applicationId "com.example.fluttertemplate"
+            manifestPlaceholders = [replaceValueTest: true, replaceValueLive: "any string that you want to use"]
+        }
+
+        production {
+            flavorDimensions "version"
+            resValue "string", "app_name", "App by Amorn"
+            applicationId "com.production.fluttertemplate"
+            manifestPlaceholders = [replaceValueTest: false, replaceValueLive: "any string that you want to use for production"]
         }
     }
+
+    buildTypes {
+        release {
+            debuggable false
+            signingConfig signingConfigs.debug
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+
+    }
+
 }
 
 flutter {

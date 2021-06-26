@@ -26,13 +26,14 @@ class ThirdPartySDK {
         let _ = Timer.scheduledTimer(timeInterval: 4, target: self, selector: #selector(self.thirdPartyDidFinished), userInfo: nil, repeats: false)
     }
     
-    func process(id: String) -> String {
+    func process() -> String {
         let randomInt = Int.random(in: 0..<10)
-        return "\(id) - \(randomInt)"
+        return "\(id ?? "") - \(randomInt)"
     }
     
     @objc func thirdPartyDidFinished() {
-        let valueFromCallBack = "Hello from SDK! version \(id ?? "N/A") - SDK"
+        let randomInt = Int.random(in: 0..<10)
+        let valueFromCallBack = "SDK version \(id ?? "N/A") Build: \(randomInt)"
         delegate?.onFinish(value: valueFromCallBack)
     }
     
