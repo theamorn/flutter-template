@@ -1,16 +1,21 @@
-# fluttertemplate
+<div align="center">
+<h3 align="center">Flutter Template project for starting a new project that includes basic security and CI/CD</h3>
+</div>
 
-A new Flutter project.
+## About The Project
+
+This project is a sample project that include basic security in CI/CD with fastlane for testing and deploy
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Clone this project and use this article for reference [Medium](https://medium.com/kbtg-life/flutter-demo-by-kbtg-flutter-secure-app-project-template-5ba84faf15d7)
 
-A few resources to get you started if this is your first Flutter project:
+## Usage
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+1. Set up Fastlane in both iOS/Android in each iOS/Android folder from root project. You need to setup for Matchfile, Fastfile, Appfile based on your project
+2. Check AppDelegate.swift/ MainActivity.kt to see if you want to comment out anything
+3. Check deploy.sh, which is the bash script to auto-deploy once you finish setting up Fastlane
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Contact
+
+Amorn Apichattanakul - [@EinzelnSync](https://twitter.com/EinzelnSync) - benamorn@gmail.com - [LinkedIn](https://www.linkedin.com/in/amorna/)
